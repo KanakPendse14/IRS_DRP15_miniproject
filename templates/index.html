@@ -1,0 +1,44 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/style.css">
+    <title>Food Recommendation System</title>
+</head>
+<body>
+    <h1>Food Recommendation System</h1>
+    <form action="/recommend" method="POST">
+        <label for="ingredients">Ingredients (comma-separated):</label>
+        <input type="text" id="ingredients" name="ingredients">
+        
+        <label for="state">State:</label>
+        <input type="text" id="state" name="state">
+        
+        <label for="region">Region:</label>
+        <input type="text" id="region" name="region">
+
+        <label for="diet">Diet:</label>
+        <input type="text" id="diet" name="diet">
+
+        <label for="flavor_profile">Flavor Profile:</label>
+        <input type="text" id="flavor_profile" name="flavor_profile">
+
+        <label for="course">Course:</label>
+        <input type="text" id="course" name="course">
+
+        <button type="submit">Recommend</button>
+    </form>
+
+    {% if recommendations %}
+        <h2>Recommendations:</h2>
+        <ul>
+        {% for item in recommendations %}
+            <li>{{ item.name }} - Prep Time: {{ item.prep_time }} mins, Cook Time: {{ item.cook_time }} mins, Diet: {{ item.diet }}, Flavor Profile: {{ item.flavor_profile }}, Course: {{ item.course }}, State: {{ item.state }}, Region: {{ item.region }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No recommendations found.</p>
+    {% endif %}
+</body>
+</html>

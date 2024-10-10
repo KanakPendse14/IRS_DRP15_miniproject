@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommendations for {{ food_name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Recommendations for "{{ food_name }}"</h1>
+        {% if recommendations %}
+        <ul>
+            {% for food in recommendations.iterrows() %}
+            <li>
+                <strong>{{ food[1]['name'] }}</strong><br>
+                Diet: {{ food[1]['diet'] }} | Prep Time: {{ food[1]['prep_time'] }} | Cook Time: {{ food[1]['cook_time'] }}<br>
+                Flavor: {{ food[1]['flavor_profile'] }} | Course: {{ food[1]['course'] }} | State: {{ food[1]['state'] }} | Region: {{ food[1]['region'] }}<br>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>{{ message }}</p>
+        {% endif %}
+        <a href="/">Go Back</a>
+    </div>
+</body>
+</html>
